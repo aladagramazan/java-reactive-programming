@@ -29,6 +29,14 @@ public class Util {
         }
     }
 
+    public static void sleep(Duration duration) {
+        try {
+            Thread.sleep(duration.toMillis());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         var mono = Mono.just(1);
         mono.subscribe(subscriber("sub1"));
