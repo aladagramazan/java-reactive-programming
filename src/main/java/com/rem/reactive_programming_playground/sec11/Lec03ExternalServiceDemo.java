@@ -5,6 +5,7 @@ import com.rem.reactive_programming_playground.sec09.client.ServerError;
 import com.rem.reactive_programming_playground.sec11.client.ExternalServiceClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import reactor.core.publisher.Flux;
 import reactor.util.retry.Retry;
 
 import java.time.Duration;
@@ -14,9 +15,10 @@ public class Lec03ExternalServiceDemo {
     private static final Logger log = LoggerFactory.getLogger(Lec03ExternalServiceDemo.class);
 
     public static void main(String[] args) {
-        retry();
-
-        Util.sleepSeconds(60);
+        Flux.just("a")
+                .retry(1)
+                .retry(2)
+                .subscribe(Util.subscriber());
     }
 
     private static void repeat() {
